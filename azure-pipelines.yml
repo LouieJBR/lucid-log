@@ -23,15 +23,6 @@ steps:
       versionSpec: '$(NODE_VERSION)'
     displayName: 'Install Node.js'
 
-  # 🔹 Cache Node Modules (Speed Up Builds)
-  - task: Cache@2
-    inputs:
-      key: 'npm | "$(Agent.OS)" | frontend/package-lock.json | backend/package-lock.json'
-      restoreKeys: |
-        npm | "$(Agent.OS)"
-      path: $(NPM_CACHE_FOLDER)
-    displayName: 'Cache npm dependencies'
-
   # 🔹 Lint & Test Frontend (Angular)
   - script: |
       cd frontend
