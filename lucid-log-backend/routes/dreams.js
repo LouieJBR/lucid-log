@@ -18,22 +18,31 @@ const authenticate = (req, res, next) => {
     }
 };
 
-// Save a new dream
-router.post('/', authenticate, async (req, res) => {
+// ✅ Save a Dream
+router.post('/save', authenticate, async (req, res) => {
     try {
         const { text } = req.body;
-        const newDream = new Dream({ userId: req.user.id, text });
+
+        if (!text) {
+            return res.status(400).json({ error: 'Dream text is required' });
+        }
+
+        const newDream = new Dream({
+            userId: req.user.id, // User ID from JWT
+            text
+        });
+
         await newDream.save();
-        res.status(201).json(newDream);
+        res.json({ message: 'Dream saved successfully', dream: newDream });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
-// Get all dreams for a user
-router.get('/:userId', authenticate, async (req, res) => {
+// ✅ Get Dreams for a User
+router.get('/user-dreams', authenticate, async (req, res) => {
     try {
-        const dreams = await Dream.find({ userId: req.params.userId }).sort({ date: -1 });
+        const dreams = await Dream.find({ userId: req.user.id }).sort({ createdAt: -1 });
         res.json(dreams);
     } catch (err) {
         res.status(500).json({ error: err.message });

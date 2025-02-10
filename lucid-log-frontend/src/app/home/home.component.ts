@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
     if (storedToken) {
       console.log('Stored token:', storedToken);
       this.isLoggedIn = true;
+      this.fetchDreams();
 
       // ✅ Fetch User Profile from MongoDB
       this.userService.getUserProfile().subscribe({
@@ -63,14 +64,14 @@ export class HomeComponent implements OnInit {
   submitDream() {
     if (this.dreamText.trim()) {
       this.dreamService.saveDream(this.dreamText).subscribe(response => {
-        this.dreams.unshift(response);
+        this.dreams.unshift(response.dream);
         this.dreamText = '';
       });
     }
   }
 
-  fetchDreams(userId: string) {
-    this.dreamService.getDreams(userId).subscribe(response => {
+  fetchDreams() {
+    this.dreamService.getDreams().subscribe(response => {
       this.dreams = response;
     });
   }
