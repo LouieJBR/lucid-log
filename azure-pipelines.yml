@@ -11,7 +11,7 @@ pr:
       - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: 'Default'  # Use the self-hosted agent instead of Microsoft-hosted
 
 variables:
   NODE_VERSION: '22.13.1'
