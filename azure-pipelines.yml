@@ -12,6 +12,11 @@ steps:
   - checkout: self  # ✅ Ensure repo is cloned
 
   - script: |
+      echo "MONGO_URI=$(MONGO_URI)" >> backend/.env
+      echo "PORT=$(PORT)" >> backend/.env
+    displayName: 'Create .env File for Backend'
+
+  - script: |
       cd frontend
       npm install
     workingDirectory: $(Build.SourcesDirectory)/lucid-log-frontend
