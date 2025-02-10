@@ -1,0 +1,17 @@
+<div *ngIf="auth.isAuthenticated$ | async">
+  <p>Welcome, {{ (auth.user$ | async)?.name }}</p>
+
+  <input [(ngModel)]="dreamText" placeholder="Write your dream..." />
+  <button (click)="submitDream()">Save Dream</button>
+
+  <h2>Your Dreams</h2>
+  <ul>
+    <li *ngFor="let dream of dreams">
+      {{ dream.text }} - {{ dream.date | date:'short' }}
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="!(auth.isAuthenticated$ | async)">
+  <p>Please log in to track your dreams.</p>
+</div>
