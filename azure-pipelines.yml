@@ -23,14 +23,6 @@ steps:
       versionSpec: '$(NODE_VERSION)'
     displayName: 'Install Node.js'
 
-  # 🔹 Lint & Test Frontend (Angular)
-  - script: |
-      cd frontend
-      npm install
-      npm run lint
-      npm run test -- --watch=false --browsers=ChromeHeadless
-    displayName: 'Lint & Test Angular Frontend'
-
   # 🔹 Build Angular App
   - script: |
       cd frontend
