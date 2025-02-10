@@ -1,5 +1,6 @@
-<div *ngIf="auth.isAuthenticated$ | async">
-  <p>Welcome, {{ (auth.user$ | async)?.name }}</p>
+<div *ngIf="isLoggedIn">
+  <p>Welcome, <strong>{{ userName }}</strong></p>
+  <p>Email: {{ userEmail }}</p>
 
   <input [(ngModel)]="dreamText" placeholder="Write your dream..." />
   <button (click)="submitDream()">Save Dream</button>
@@ -12,6 +13,7 @@
   </ul>
 </div>
 
-<div *ngIf="!(auth.isAuthenticated$ | async)">
+<div *ngIf="!isLoggedIn">
   <p>Please log in to track your dreams.</p>
+  <button (click)="redirectToLogin()">Login</button>
 </div>

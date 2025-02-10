@@ -59,6 +59,39 @@ router.get('/callback',
   }
 );
 
+// Middleware to verify JWT
+const authenticate = (req, res, next) => {
+    const token = req.header('Authorization');
+    if (!token) return res.status(401).json({ error: 'Access Denied' });
+
+    try {
+        const verified = jwt.verify(token.replace('Bearer ', ''), process.env.JWT_SECRET);
+        req.user = verified;
+        next();
+    } catch (error) {
+        res.status(400).json({ error: 'Invalid Token' });
+    }
+};
+
+// ✅ Get User Profile from MongoDB
+router.get('/profile', authenticate, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id);
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.json({
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            createdAt: user.createdAt
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 // Logout Route
 router.get('/logout', (req, res) => {
     req.logout();
