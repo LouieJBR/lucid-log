@@ -2,31 +2,25 @@ trigger:
   branches:
     include:
       - main
-      - ll-/*
-      - fix-/*
-
-pr:
-  branches:
-    include:
-      - main
+      - feature/*
+      - bugfix/*
 
 pool:
-  name: 'Default'  # Use the self-hosted agent instead of Microsoft-hosted
-
-variables:
-  NODE_VERSION: '22.13.1'
+  name: 'Default'
 
 steps:
-  - checkout: self
+  - checkout: self  # ✅ Ensure repo is cloned
 
-  # 🔹 Install Node.js
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '$(NODE_VERSION)'
-    displayName: 'Install Node.js'
+  - script: |
+      cd frontend
+      npm install
+      npm run lint
+      npm run test -- --watch=false --browsers=ChromeHeadless
+    workingDirectory: $(Build.SourcesDirectory)/frontend
+    displayName: 'Lint & Test Angular Frontend'
 
-  # 🔹 Build Angular App
   - script: |
       cd frontend
       npm run build -- --configuration=production
+    workingDirectory: $(Build.SourcesDirectory)/frontend
     displayName: 'Build Angular App'
