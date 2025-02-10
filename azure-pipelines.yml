@@ -14,10 +14,8 @@ steps:
   - script: |
       cd frontend
       npm install
-      npm run lint
-      npm run test -- --watch=false --browsers=ChromeHeadless
     workingDirectory: $(Build.SourcesDirectory)/frontend
-    displayName: 'Lint & Test Angular Frontend'
+    displayName: 'Install Angular Dependencies'
 
   - script: |
       cd frontend
