@@ -14,11 +14,11 @@ steps:
   - script: |
       cd frontend
       npm install
-    workingDirectory: $(Build.SourcesDirectory)/frontend
+    workingDirectory: $(Build.SourcesDirectory)/lucid-log-frontend
     displayName: 'Install Angular Dependencies'
 
   - script: |
       cd frontend
-      npm run build -- --configuration=production
-    workingDirectory: $(Build.SourcesDirectory)/frontend
+      npm run build
+    workingDirectory: $(Build.SourcesDirectory)/lucid-log-frontend
     displayName: 'Build Angular App'
