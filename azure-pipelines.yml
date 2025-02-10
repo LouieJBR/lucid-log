@@ -17,6 +17,8 @@ variables:
   NODE_VERSION: '22.13.1'
 
 steps:
+  - checkout: self
+
   # 🔹 Install Node.js
   - task: NodeTool@0
     inputs:
