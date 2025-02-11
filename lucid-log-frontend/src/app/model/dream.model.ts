@@ -1,4 +1,4 @@
 export interface Dream {
   text: string;
-  createdAt?: string;
-}
+  date?: string; // ✅ Change from createdAt to date
+  }

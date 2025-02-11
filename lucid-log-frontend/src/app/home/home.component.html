@@ -6,12 +6,20 @@
   <button (click)="submitDream()">Save Dream</button>
 
   <h2>Your Dreams</h2>
-  <ul>
+  <!-- <ul>
     <li *ngFor="let dream of dreams">
       {{ dream.text }} - {{ dream.date | date:'short' }}
     </li>
   </ul>
+</div> -->
+
+<div class="timeline" *ngIf="isLoggedIn">
+  <div *ngFor="let dream of dreams" class="dream-card">
+    <p class="dream-text">{{ dream.text }}</p> <!-- ✅ Ensure dream.text is used -->
+    <span class="dream-date">{{ dream.date | date:'short' }}</span> <!-- ✅ Ensure createdAt is used -->
+  </div>
 </div>
+
 
 <div *ngIf="!isLoggedIn">
   <p>Please log in to track your dreams.</p>
