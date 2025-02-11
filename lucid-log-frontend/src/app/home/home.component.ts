@@ -14,9 +14,9 @@ import { UserService } from '../service/user.service';
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-  isLoggedIn: boolean = false;
-  dreamText: string = '';
-  dreams: any[] = [];
+  isLoggedIn = false;
+  dreamText = '';
+  dreams: string[] = [];
   userName: string | null = null;
   userEmail: string | null = null;
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Dream } from '../model/dream.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,17 +15,21 @@ export class DreamService {
     return localStorage.getItem('auth_token');
   }
 
-  saveDream(text: string): Observable<any> {
+  saveDream(text: string): Observable<{ message: string; dream: Dream }> {
     const token = this.getToken();
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
 
-    return this.http.post(`${this.apiUrl}/save`, { text }, { headers });
+    return this.http.post<{ message: string; dream: Dream }>(
+      `${this.apiUrl}/save`,
+      { text },
+      { headers }
+    );
   }
 
-  getDreams(): Observable<any> {
+  getDreams(): Observable<Dream[]> {
     const token = this.getToken();
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
 
-    return this.http.get(`${this.apiUrl}/user-dreams`, { headers });
+    return this.http.get<Dream[]>(`${this.apiUrl}/user-dreams`, { headers });
   }
 }

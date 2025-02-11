@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UserProfile } from '../model/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,10 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  getUserProfile(): Observable<any> {
+  getUserProfile(): Observable<UserProfile> {
     const token = localStorage.getItem('auth_token');
     const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
 
-    return this.http.get(this.apiUrl, { headers });
+    return this.http.get<UserProfile>(this.apiUrl, { headers });
   }
 }
