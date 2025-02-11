@@ -6,6 +6,7 @@ import { AuthService } from '@auth0/auth0-angular';
 import { DreamService } from '../service/dream.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../service/user.service';
+import { Dream } from '../model/dream.model';
 
 @Component({
   selector: 'app-home',
@@ -14,9 +15,9 @@ import { UserService } from '../service/user.service';
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-  isLoggedIn: boolean = false;
-  dreamText: string = '';
-  dreams: any[] = [];
+  isLoggedIn = false;
+  dreamText = '';
+  dreams: Dream[] = [];
   userName: string | null = null;
   userEmail: string | null = null;
 
@@ -58,13 +59,12 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  redirectToLogin() {
-    window.location.href = 'http://localhost:5000/api/auth/login';
-  }
   submitDream() {
     if (this.dreamText.trim()) {
       this.dreamService.saveDream(this.dreamText).subscribe(response => {
-        this.dreams.unshift(response.dream);
+        console.log('✅ Saved Dream:', response.dream);
+        console.log('dream date:', response.dream.date);
+        this.dreams.unshift(response.dream); // ✅ Ensure dream is of type Dream
         this.dreamText = '';
       });
     }
@@ -72,7 +72,12 @@ export class HomeComponent implements OnInit {
 
   fetchDreams() {
     this.dreamService.getDreams().subscribe(response => {
-      this.dreams = response;
+      console.log('✅ Fetched Dreams:', response);
+      this.dreams = response as Dream[]; // ✅ Ensure response is cast to Dream[]
     });
+  }
+
+  redirectToLogin() {
+    window.location.href = 'http://localhost:5000/api/auth/login';
   }
 }

@@ -2,8 +2,13 @@ trigger:
   branches:
     include:
       - main
-      - feature/*
-      - bugfix/*
+      - ll-*
+      - fix-/*
+
+pr:
+  branches:
+    include:
+      - main  # ✅ Run linting & tests on PRs to main
 
 pool:
   name: 'Default'
@@ -11,19 +16,43 @@ pool:
 steps:
   - checkout: self  # ✅ Ensure repo is cloned
 
-  - script: |
-      echo "MONGO_URI=$(MONGO_URI)" >> backend/.env
-      echo "PORT=$(PORT)" >> backend/.env
-    displayName: 'Create .env File for Backend'
+  # ✅ Create .env file for backend
+  # - script: |
+  #     echo "MONGO_URI=$(MONGO_URI)" >> backend/.env
+  #     echo "PORT=$(PORT)" >> backend/.env
+  #   displayName: 'Create .env File for Backend'
 
+  # ✅ Install Backend Dependencies
+  # - script: |
+  #     cd backend
+  #     npm install
+  #   workingDirectory: $(Build.SourcesDirectory)/lucid-log-backend
+  #   displayName: 'Install Backend Dependencies'
+
+  # ✅ Run Backend Linter (ESLint)
+  # - script: |
+  #     cd backend
+  #     npm run lint
+  #   workingDirectory: $(Build.SourcesDirectory)/lucid-log-backend
+  #   displayName: 'Run Backend Linter'
+
+  # ✅ Install Frontend Dependencies
   - script: |
-      cd frontend
+      cd lucid-log-frontend
       npm install
     workingDirectory: $(Build.SourcesDirectory)/lucid-log-frontend
     displayName: 'Install Angular Dependencies'
 
+  # ✅ Run Frontend Linter (Angular ESLint)
   - script: |
-      cd frontend
+      cd lucid-log-frontend
+      npm run lint
+    workingDirectory: $(Build.SourcesDirectory)/lucid-log-frontend
+    displayName: 'Run Frontend Linter'
+
+  # ✅ Build Frontend
+  - script: |
+      cd lucid-log-frontend
       npm run build
     workingDirectory: $(Build.SourcesDirectory)/lucid-log-frontend
     displayName: 'Build Angular App'
