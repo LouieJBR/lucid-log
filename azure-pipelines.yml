@@ -17,24 +17,23 @@ steps:
   - checkout: self  # ✅ Ensure repo is cloned
 
   # ✅ Create .env file for backend
-  # - script: |
-  #     echo "MONGO_URI=$(MONGO_URI)" >> backend/.env
-  #     echo "PORT=$(PORT)" >> backend/.env
-  #   displayName: 'Create .env File for Backend'
+  - script: |
+      echo "MONGO_URI=$(MONGO_URI)" >> backend/.env
+    displayName: 'Create .env File for Backend'
 
   # ✅ Install Backend Dependencies
-  # - script: |
-  #     cd backend
-  #     npm install
-  #   workingDirectory: $(Build.SourcesDirectory)/lucid-log-backend
-  #   displayName: 'Install Backend Dependencies'
+  - script: |
+      cd lucid-log-backend
+      npm install
+    workingDirectory: $(Build.SourcesDirectory)/lucid-log-backend
+    displayName: 'Install Backend Dependencies'
 
   # ✅ Run Backend Linter (ESLint)
-  # - script: |
-  #     cd backend
-  #     npm run lint
-  #   workingDirectory: $(Build.SourcesDirectory)/lucid-log-backend
-  #   displayName: 'Run Backend Linter'
+  - script: |
+      cd lucid-log-backend
+      npm run lint
+    workingDirectory: $(Build.SourcesDirectory)/lucid-log-backend
+    displayName: 'Run Backend Linter'
 
   # ✅ Install Frontend Dependencies
   - script: |
