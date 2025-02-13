@@ -28,9 +28,8 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "./lucid-log-frontend/browser" # App source code path
-          api_location: "" # Api source code path - optional
-          output_location: "dist/lucid-log-frontend" # Built app content directory - optional
+          app_location: lucid-log-frontend/dist/lucid-log-frontend/browser
+          output_location: lucid-log-frontend/dist/lucid-log-frontend/browser
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:
