@@ -21,13 +21,30 @@ export class HomeComponent implements OnInit {
   dreams: Dream[] = [];
   userName: string | null = null;
   userEmail: string | null = null;
+  quoteIndex = 0;
+  quoteText = "A dream is a microscope through which we look at the hidden occurrences in our soul.";
+  fadeClass = 'fade-in';
+
+  quotes = [
+    "Dreams feel real while we're in them. It's only when we wake up that we realize something was actually strange.",
+    "The dreamer is awake inside the dream.",
+    "The moment you become aware that you're dreaming, you become free.",
+    "In a dream, you are never just a passive observer; you are the architect of your own reality.",
+    "A lucid dream is not just a dream—it’s a playground where the laws of reality bend to your will.",
+    "The only limits in lucid dreams are the ones you believe in.",
+    "When you realize you’re dreaming, you hold the keys to an infinite world.",
+    "Lucid dreaming is like being handed a paintbrush to color the canvas of your subconscious.",
+    "Control the dream, control the experience, control the self.",
+    "Once you learn to become aware inside your dreams, the real adventure begins."
+  ];
+
 
   constructor(
     public auth: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private dreamService: DreamService) {}
+    private dreamService: DreamService) { }
 
   ngOnInit() {
     // Check if a token exists in the URL
@@ -59,7 +76,23 @@ export class HomeComponent implements OnInit {
       });
     }
 
-    console.log("Checking isLoggedIn:", this.isLoggedIn);
+    this.startQuoteRotation();
+  }
+
+  startQuoteRotation() {
+    setInterval(() => {
+      // Fade out
+      this.fadeClass = 'fade-out';
+      
+      setTimeout(() => {
+        // Change quote after fade-out
+        this.quoteIndex = (this.quoteIndex + 1) % this.quotes.length;
+        this.quoteText = this.quotes[this.quoteIndex];
+
+        // Fade back in
+        this.fadeClass = 'fade-in';
+      }, 1000); // Match CSS transition time
+    }, 15000); // Change quote every 15 seconds
   }
 
   submitDream() {
