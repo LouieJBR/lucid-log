@@ -20,6 +20,10 @@
   opacity: 0;
 }
 
+.login-quote {
+  text-decoration: underline;
+}
+
 
 /* Style the side navigation */
 .sidenav {

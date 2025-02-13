@@ -3,7 +3,8 @@
     <a (click)="redirectToLogin()">Login</a>
   </div>
   <div *ngIf="isLoggedIn">
-    <a> {{userName}} </a>
+    <a>{{userName}}</a>
+    <a (click)="logout()">logout</a>
   </div>
   <hr>
   <p>Keep your dream alive</p>
@@ -16,17 +17,22 @@
 
 <div class="content">
   <h2 class="title">Lucid Log</h2>
-<hr>
+  <hr>
   <div class="quote" id="quote-container" [class]="fadeClass">
-        <p>{{ quoteText }}</p>  
+    <p>{{ quoteText }}</p>
+    <div *ngIf="!isLoggedIn" class="login-quote">
+      <br>
+      <a (click)="redirectToLogin()">Please Login to continue...</a>
+    </div>
   </div>
+  
   <div class="timeline">
-    <div *ngFor="let dream of dreams; let i = index" class="container" [ngClass]="{ 'left': i % 2 === 0, 'right': i % 2 !== 0 }">
+    <div *ngFor="let dream of dreams; let i = index" class="container"
+      [ngClass]="{ 'left': i % 2 === 0, 'right': i % 2 !== 0 }">
       <div class="content">
         <h2>{{ dream.date | date:'short' }}</h2> <!-- ✅ Short formatted date as heading -->
         <p>{{ dream.text }}</p> <!-- ✅ Dream text -->
       </div>
     </div>
   </div>
-  
 </div>

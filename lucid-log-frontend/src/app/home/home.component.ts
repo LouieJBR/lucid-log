@@ -121,4 +121,10 @@ export class HomeComponent implements OnInit {
   redirectToLogin() {
     window.location.href = 'http://localhost:5000/api/auth/login';
   }
+
+  logout() {
+    localStorage.removeItem('auth_token'); // ✅ Clear stored token
+    this.auth.logout(); // ✅ Calls Auth0 logout
+    window.location.href = 'http://localhost:4200'; // ✅ Redirect manually
+  }  
 }
