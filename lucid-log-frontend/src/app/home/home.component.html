@@ -1,27 +1,16 @@
-<div *ngIf="isLoggedIn">
-  <p>Welcome, <strong>{{ userName }}</strong></p>
-  <p>Email: {{ userEmail }}</p>
-
-  <input [(ngModel)]="dreamText" placeholder="Write your dream..." />
-  <button (click)="submitDream()">Save Dream</button>
-
-  <h2>Your Dreams</h2>
-  <!-- <ul>
-    <li *ngFor="let dream of dreams">
-      {{ dream.text }} - {{ dream.date | date:'short' }}
-    </li>
-  </ul>
-</div> -->
-
-<div class="timeline" *ngIf="isLoggedIn">
-  <div *ngFor="let dream of dreams" class="dream-card">
-    <p class="dream-text">{{ dream.text }}</p> <!-- ✅ Ensure dream.text is used -->
-    <span class="dream-date">{{ dream.date | date:'short' }}</span> <!-- ✅ Ensure createdAt is used -->
+<div class="sidenav">
+  <div *ngIf="!isLoggedIn">
+    <a (click)="redirectToLogin()">Login</a>
   </div>
+  <div *ngIf="isLoggedIn">
+    <a> {{userName}} </a>
+  </div>
+  <!-- <a href="#">Link</a>
+    <a href="#">Link</a>
+    <a href="#">Link</a> -->
 </div>
 
-
-<div *ngIf="!isLoggedIn">
-  <p>Please log in to track your dreams.</p>
-  <button (click)="redirectToLogin()">Login</button>
+<div class="content">
+  <h2>Lucid Log</h2>
+  <p>A full-height, fixed sidenav and content.</p>
 </div>

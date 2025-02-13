@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AsyncPipe, DatePipe, NgIf, NgFor } from '@angular/common';
+import { DatePipe, NgIf, NgFor } from '@angular/common';
 import { AuthService } from '@auth0/auth0-angular';
 import { DreamService } from '../service/dream.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -11,8 +11,9 @@ import { Dream } from '../model/dream.model';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, FormsModule, NgIf, NgFor, AsyncPipe, DatePipe],
+  imports: [CommonModule, FormsModule, NgIf, NgFor, DatePipe],
   templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'] // ✅ Ensure styles are linked
 })
 export class HomeComponent implements OnInit {
   isLoggedIn = false;
@@ -57,6 +58,8 @@ export class HomeComponent implements OnInit {
         }
       });
     }
+
+    console.log("Checking isLoggedIn:", this.isLoggedIn);
   }
 
   submitDream() {
