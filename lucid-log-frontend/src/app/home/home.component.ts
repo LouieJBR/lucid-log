@@ -7,6 +7,8 @@ import { DreamService } from '../service/dream.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../service/user.service';
 import { Dream } from '../model/dream.model';
+import { environment } from '../../environments/environment'; // ✅ Import environment src/environments/environment';
+
 
 @Component({
   selector: 'app-home',
@@ -17,6 +19,7 @@ import { Dream } from '../model/dream.model';
 })
 export class HomeComponent implements OnInit {
   isLoggedIn = false;
+  apiUrl = environment.apiUrl; // ✅ Use correct API URL
   dreamText = '';
   dreams: Dream[] = [];
   userName: string | null = null;
@@ -128,7 +131,7 @@ export class HomeComponent implements OnInit {
   }
     
   redirectToLogin() {
-    window.location.href = 'http://localhost:5000/api/auth/login';
+    window.location.href = environment.apiUrl + '/auth/login';
   }
 
   logout() {

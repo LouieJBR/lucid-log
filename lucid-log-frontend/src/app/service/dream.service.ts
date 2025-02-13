@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../../src/environments/environment';
 import { Dream } from '../model/dream.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DreamService {
-  private apiUrl = 'http://localhost:5000/api/dreams';
-
-  constructor(private http: HttpClient) {}
+  private apiUrl = environment.apiUrl+'/dreams'; // ✅ Use dynamic API URL
+  constructor(private http: HttpClient){}
 
   private getToken(): string | null {
     return localStorage.getItem('auth_token');
