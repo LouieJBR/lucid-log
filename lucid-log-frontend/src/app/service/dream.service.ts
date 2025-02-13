@@ -40,5 +40,16 @@ export class DreamService {
   
     return this.http.get<Dream[]>(`${this.apiUrl}/user-dreams`, { headers });
   }
+
+  deleteDream(dreamId: string): Observable<{ message: string; dreamId: string }> {
+    const token = localStorage.getItem('auth_token');
+    const headers = new HttpHeaders({ Authorization: `Bearer ${token}` });
+  
+    return this.http.delete<{ message: string; dreamId: string }>(
+      `${this.apiUrl}/${dreamId}`,
+      { headers }
+    );
+  }
+  
   
 }

@@ -65,6 +65,24 @@ router.get('/user-dreams', async (req, res) => {
     }
 });
 
+router.delete('/:dreamId', authenticate, async (req, res) => {
+    try {
+        const { dreamId } = req.params;
+        const userId = req.user.id;
+
+        const deletedDream = await Dream.findOneAndDelete({ _id: dreamId, userId });
+
+        if (!deletedDream) {
+            return res.status(404).json({ error: 'Dream not found or unauthorized' });
+        }
+
+        res.json({ message: 'Dream deleted successfully', dreamId: deletedDream._id });
+    } catch (error) {
+        console.error("❌ Error deleting dream:", error);
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
 
 
 module.exports = router;
