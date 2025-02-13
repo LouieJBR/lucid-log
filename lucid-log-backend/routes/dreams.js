@@ -40,13 +40,31 @@ router.post('/save', authenticate, async (req, res) => {
 });
 
 // ✅ Get Dreams for a User
-router.get('/user-dreams', authenticate, async (req, res) => {
+router.get('/user-dreams', async (req, res) => {
     try {
-        const dreams = await Dream.find({ userId: req.user.id }).sort({ createdAt: -1 });
+        console.log("🔹 Incoming Request: ", req.headers.authorization);
+
+        const token = req.headers.authorization?.split(" ")[1];
+        if (!token) {
+            console.error("❌ No token provided");
+            return res.status(401).json({ error: "Unauthorized" });
+        }
+
+        // ✅ Decode token and find user
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const userId = decoded.id;
+        console.log("✅ User ID from Token:", userId);
+
+        // ❌ FIX: REMOVE ORDER-BY IF INDEX DOESN'T EXIST
+        const dreams = await Dream.find({ userId }); // ❌ REMOVE `.sort({ date: -1 })` IF NOT INDEXED
+
         res.json(dreams);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
+    } catch (error) {
+        console.error("❌ Server Error:", error);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 });
+
+
 
 module.exports = router;
