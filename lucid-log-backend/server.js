@@ -9,7 +9,7 @@ const Auth0Strategy = require('passport-auth0');
 const User = require('./models/User');
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:4200', credentials: true }));
+app.use(cors({ origin: 'https://black-mushroom-00d3c8703.4.azurestaticapps.net', credentials: true }));
 app.use(express.json());
 
 // Session setup
