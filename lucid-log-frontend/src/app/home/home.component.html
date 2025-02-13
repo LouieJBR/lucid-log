@@ -33,7 +33,7 @@
         <h2>{{ dream.date | date:'short' }}</h2> <!-- ✅ Short formatted date as heading -->
         <p>{{ dream.text }}</p> <!-- ✅ Dream text -->
 
-        <span class="delete-icon" (click)="deleteDream(dream._id)">🗑️</span>
+        <p class="delete-dream" (click)="deleteDream(dream._id)">delete</p>
       </div>
     </div>
   </div>

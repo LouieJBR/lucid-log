@@ -205,7 +205,7 @@
   border-radius: 6px;
 }
 
-.delete-icon {
+.delete-dream {
   position: relative;
   top: 10px;
   right: 10px;
@@ -217,7 +217,7 @@
 }
 
 /* Show delete icon on hover */
-.container:hover .delete-icon {
+.container:hover .delete-dream {
   opacity: 1;
 }
 
