@@ -1,9 +1,13 @@
 .quote {
   font-style: italic ;
-  max-width: 80%;
+  max-width: 100%;
   text-align: center;
   transition: opacity 1s ease-in-out;
-  padding-bottom: 20px;
+  padding-bottom: 50px;
+}
+
+.title {
+  text-align: center;
 }
 
 /* Initially visible */
@@ -38,6 +42,11 @@
   background-color: #222222;
   text-decoration: none;
   display: block;
+}
+
+.sidenav h2 {
+  text-align: center;
+  border-right: #222222;
 }
 
 /* Change color on hover */
