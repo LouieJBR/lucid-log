@@ -5,9 +5,13 @@
   <div *ngIf="isLoggedIn">
     <a> {{userName}} </a>
   </div>
-  <!-- <a href="#">Link</a>
-    <a href="#">Link</a>
-    <a href="#">Link</a> -->
+  <hr>
+  <p>Keep your dream alive</p>
+
+  <div class="dream-input">
+    <textarea [(ngModel)]="dreamText" placeholder="write it here"></textarea>
+    <a (click)="submitDream()">Save Dream</a>
+  </div>
 </div>
 
 <div class="content">

@@ -44,15 +44,45 @@
   display: block;
 }
 
-.sidenav h2 {
+.sidenav hr {
+  color: moccasin;
+  margin-bottom: 10px;
+}
+
+.dream-input {
+  width: 100%; /* ✅ Ensures textarea takes full width */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  background-color: #222222;
+}
+
+.sidenav p{
   text-align: center;
-  border-right: #222222;
+  color: moccasin;
+  background-color: #222222;
+}
+
+/* ✅ Textarea Styling */
+.dream-input textarea {
+  width: 90%; /* ✅ Nearly full width */
+  height: 100px; /* ✅ Enough space for multiple lines */
+  border: 2px solid moccasin;
+  border-radius: 5px;
+  background-color: #333333;
+  color: moccasin;
+  padding: 20px;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  resize: vertical; /* ✅ Allow resizing */
+  outline: none;
 }
 
 /* Change color on hover */
 .sidenav a:hover {
-  background-color: #ddd;
-  color: black;
+  /* background-color: #ddd; */
+  color: moccasin;
 }
 
 /* Style the content */
