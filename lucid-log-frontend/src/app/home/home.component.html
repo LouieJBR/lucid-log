@@ -1,27 +1,61 @@
-<div *ngIf="isLoggedIn">
-  <p>Welcome, <strong>{{ userName }}</strong></p>
-  <p>Email: {{ userEmail }}</p>
+<div class="sidenav">
+  <div *ngIf="!isLoggedIn">
+    <a (click)="redirectToLogin()">Login</a>
+  </div>
+  <div *ngIf="isLoggedIn">
+    <a> {{userName}} </a>
+  </div>
+  <hr>
+  <p>Keep your dream alive</p>
 
-  <input [(ngModel)]="dreamText" placeholder="Write your dream..." />
-  <button (click)="submitDream()">Save Dream</button>
-
-  <h2>Your Dreams</h2>
-  <!-- <ul>
-    <li *ngFor="let dream of dreams">
-      {{ dream.text }} - {{ dream.date | date:'short' }}
-    </li>
-  </ul>
-</div> -->
-
-<div class="timeline" *ngIf="isLoggedIn">
-  <div *ngFor="let dream of dreams" class="dream-card">
-    <p class="dream-text">{{ dream.text }}</p> <!-- ✅ Ensure dream.text is used -->
-    <span class="dream-date">{{ dream.date | date:'short' }}</span> <!-- ✅ Ensure createdAt is used -->
+  <div class="dream-input">
+    <textarea [(ngModel)]="dreamText" placeholder="write it here"></textarea>
+    <a (click)="submitDream()">Save Dream</a>
   </div>
 </div>
 
-
-<div *ngIf="!isLoggedIn">
-  <p>Please log in to track your dreams.</p>
-  <button (click)="redirectToLogin()">Login</button>
+<div class="content">
+  <h2 class="title">Lucid Log</h2>
+<hr>
+  <div class="quote" id="quote-container" [class]="fadeClass">
+        <p>{{ quoteText }}</p>  
+  </div>
+  <div class="timeline">
+    <div class="container left">
+      <div class="content">
+        <h2>2017</h2>
+        <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+      </div>
+    </div>
+    <div class="container right">
+      <div class="content">
+        <h2>2016</h2>
+        <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+      </div>
+    </div>
+    <div class="container left">
+      <div class="content">
+        <h2>2015</h2>
+        <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+      </div>
+    </div>
+    <div class="container right">
+      <div class="content">
+        <h2>2012</h2>
+        <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+      </div>
+    </div>
+    <div class="container left">
+      <div class="content">
+        <h2>2011</h2>
+        <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+      </div>
+    </div>
+    <div class="container right">
+      <div class="content">
+        <h2>2007</h2>
+        <p>Lorem ipsum dolor sit amet, quo ei simul congue exerci, ad nec admodum perfecto mnesarchum, vim ea mazim fierent detracto. Ea quis iuvaret expetendis his, te elit voluptua dignissim per, habeo iusto primis ea eam.</p>
+      </div>
+    </div>
+  </div>
 </div>

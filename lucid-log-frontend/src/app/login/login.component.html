@@ -1,1 +1,8 @@
+<div *ngIf="!(auth.isAuthenticated$ | async)">
+  <button (click)="login()">Loginbutton>
+div>
 
+<div *ngIf="auth.isAuthenticated$ | async">
+  <p>Welcome, {{ (auth.user$ | async)?.name }}p>
+  <button (click)="logout()">Logoutbutton>
+div>
