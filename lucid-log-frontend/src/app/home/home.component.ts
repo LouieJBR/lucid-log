@@ -118,6 +118,15 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  deleteDream(dreamId: string) {
+      this.dreamService.deleteDream(dreamId).subscribe(response => {
+        console.log('✅ Deleted Dream:', response);
+        this.dreams = this.dreams.filter(dream => dream._id !== dreamId);
+      }, error => {
+        console.error('❌ Error deleting dream:', error);
+      });
+  }
+    
   redirectToLogin() {
     window.location.href = 'http://localhost:5000/api/auth/login';
   }
