@@ -73,17 +73,17 @@
   }
 
   .menu-button {
-    position: fixed;
-    top: 15px;
-    left: 15px;
+    position: fixed; /* Ensures it stays in place */
+    top: 15px; /* Fixed distance from the top */
+    left: 15px; /* Fixed distance from the left */
     background-color: moccasin;
     color: #222222;
     border: none;
     padding: 10px;
     font-size: 1.2rem;
     cursor: pointer;
-    z-index: 2;
-  }
+    z-index: 1000; /* Higher z-index to stay above content */
+  }  
 }
 
 .dream-input {

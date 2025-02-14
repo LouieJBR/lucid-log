@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
       //  Fetch User Profile from MongoDB
       this.userService.getUserProfile().subscribe({
         next: (user) => {
-          this.userName = user.name || 'Anonymous';
+          this.userName = user.name ? user.name.split('@')[0] : 'Anonymous';
           this.userEmail = user.email || 'No Email';
         },
         error: (err) => {
