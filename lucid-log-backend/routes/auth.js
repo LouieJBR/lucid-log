@@ -51,7 +51,7 @@ router.get('/callback',
 
           // Generate and return JWT token
           const token = generateToken(user);
-          res.redirect(`http://localhost:4200/login-success?token=${token}`);
+          res.redirect(`https://black-mushroom-00d3c8703.4.azurestaticapps.net/login-success?token=${token}`);
       } catch (error) {
           console.error("MongoDB Error:", error);
           res.status(500).json({ error: error.message });
@@ -95,7 +95,7 @@ router.get('/profile', authenticate, async (req, res) => {
 // Logout Route
 router.get('/logout', (req, res) => {
     req.logout();
-    res.redirect('http://localhost:4200');
+    res.redirect('https://black-mushroom-00d3c8703.4.azurestaticapps.net');
 });
 
 module.exports = router;
