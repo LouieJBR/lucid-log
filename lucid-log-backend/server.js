@@ -34,7 +34,7 @@ passport.use(new Auth0Strategy({
     domain: process.env.AUTH0_DOMAIN,
     clientID: process.env.AUTH0_CLIENT_ID,
     clientSecret: process.env.AUTH0_CLIENT_SECRET,
-    callbackURL: '/api/auth/callback'
+    callbackURL: 'https://lucid-log-api-araahcdcfwcvc8cm.uksouth-01.azurewebsites.net/api/auth/callback'
 }, async (accessToken, refreshToken, extraParams, profile, done) => {
     let user = await User.findOne({ oauthId: profile.id });
 
