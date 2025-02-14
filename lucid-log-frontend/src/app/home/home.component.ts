@@ -105,17 +105,6 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  // fetchDreams() {
-  //   this.dreamService.getDreams().subscribe({
-  //     next: (dreams) => {
-  //       this.dreams = dreams.reverse(); //  Ensures newest dreams appear first
-  //     },
-  //     error: (err) => {
-  //       console.error('❌ Error Fetching Dreams:', err);
-  //     }
-  //   });
-  // }
-
   fetchDreams() {
     this.dreamService.getDreams().subscribe({
       next: (dreams) => {
