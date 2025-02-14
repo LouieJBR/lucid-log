@@ -8,7 +8,7 @@ import { Dream } from '../model/dream.model';
   providedIn: 'root'
 })
 export class DreamService {
-  private apiUrl = environment.apiUrl+'/dreams'; // ✅ Use dynamic API URL
+  private apiUrl = environment.apiUrl+'/dreams'; //  Use dynamic API URL
   constructor(private http: HttpClient){}
 
   private getToken(): string | null {

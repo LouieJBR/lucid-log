@@ -30,8 +30,8 @@
     <div *ngFor="let dream of dreams; let i = index" class="container"
       [ngClass]="{ 'left': i % 2 === 0, 'right': i % 2 !== 0 }">
       <div class="content">
-        <h2>{{ dream.date | date:'short' }}</h2> <!-- ✅ Short formatted date as heading -->
-        <p>{{ dream.text }}</p> <!-- ✅ Dream text -->
+        <h2>{{ dream.date | date:'short' }}</h2> <!--  Short formatted date as heading -->
+        <p>{{ dream.text }}</p> <!--  Dream text -->
 
         <p class="delete-dream" (click)="deleteDream(dream._id)">delete</p>
       </div>
