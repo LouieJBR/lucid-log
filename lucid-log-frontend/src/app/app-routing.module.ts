@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'login-success', component: HomeComponent },
+  { path: 'login-success', redirectTo: '', pathMatch: 'full' }, // ✅ Redirect login success to home
   { path: 'login', component: LoginComponent }
 ];
 
