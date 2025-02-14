@@ -8,48 +8,48 @@ trigger:
 pr:
   branches:
     include:
-      - main  # ✅ Run linting & tests on PRs to main
+      - main  #  Run linting & tests on PRs to main
 
 pool:
   name: 'Default'
 
 steps:
-  - checkout: self  # ✅ Ensure repo is cloned
+  - checkout: self  #  Ensure repo is cloned
 
-  # ✅ Create .env file for backend
+  #  Create .env file for backend
   - script: |
       echo "MONGO_URI=$(MONGO_URI)" >> backend/.env
     displayName: 'Create .env File for Backend'
 
-  # ✅ Install Backend Dependencies
+  #  Install Backend Dependencies
   - script: |
       cd lucid-log-backend
       npm install
     workingDirectory: $(Build.SourcesDirectory)/lucid-log-backend
     displayName: 'Install Backend Dependencies'
 
-  # ✅ Run Backend Linter (ESLint)
+  #  Run Backend Linter (ESLint)
   - script: |
       cd lucid-log-backend
       npm run lint
     workingDirectory: $(Build.SourcesDirectory)/lucid-log-backend
     displayName: 'Run Backend Linter'
 
-  # ✅ Install Frontend Dependencies
+  #  Install Frontend Dependencies
   - script: |
       cd lucid-log-frontend
       npm install
     workingDirectory: $(Build.SourcesDirectory)/lucid-log-frontend
     displayName: 'Install Angular Dependencies'
 
-  # ✅ Run Frontend Linter (Angular ESLint)
+  #  Run Frontend Linter (Angular ESLint)
   - script: |
       cd lucid-log-frontend
       npm run lint
     workingDirectory: $(Build.SourcesDirectory)/lucid-log-frontend
     displayName: 'Run Frontend Linter'
 
-  # ✅ Build Frontend
+  #  Build Frontend
   - script: |
       cd lucid-log-frontend
       npm run build

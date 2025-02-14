@@ -25,27 +25,31 @@
 }
 
 
-/* Style the side navigation */
+/* 📌 Side Navigation - Responsive */
 .sidenav {
   height: 100%;
   width: 200px;
   position: fixed;
-  padding-top: 10px;
-  z-index: 1;
   top: 0;
   left: 0;
+  z-index: 1;
+  padding-top: 10px;
   background-color: #222222;
   overflow-x: hidden;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Side navigation links */
-.sidenav a {
-  color: white;
-  padding: 16px;
+.sidenav a, .sidenav p {
   text-align: center;
   background-color: #222222;
-  text-decoration: none;
   display: block;
+  color: white;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.sidenav a:hover {
+  color: moccasin;
 }
 
 .sidenav hr {
@@ -53,8 +57,37 @@
   margin-bottom: 10px;
 }
 
+.sidenav p {
+  color: moccasin;
+}
+
+/* 📱 Mobile Side Navigation */
+@media screen and (max-width: 768px) {
+  .sidenav {
+    width: 100%;
+    transform: translateX(-100%);
+  }
+
+  .sidenav.open {
+    transform: translateX(0);
+  }
+
+  .menu-button {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background-color: moccasin;
+    color: #222222;
+    border: none;
+    padding: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 2;
+  }
+}
+
 .dream-input {
-  width: 100%; /* ✅ Ensures textarea takes full width */
+  width: 100%; /*  Ensures textarea takes full width */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -68,10 +101,10 @@
   background-color: #222222;
 }
 
-/* ✅ Textarea Styling */
+/*  Textarea Styling */
 .dream-input textarea {
-  width: 90%; /* ✅ Nearly full width */
-  height: 100px; /* ✅ Enough space for multiple lines */
+  width: 90%; /*  Nearly full width */
+  height: 100px; /*  Enough space for multiple lines */
   border: 2px solid moccasin;
   border-radius: 5px;
   background-color: #333333;
@@ -79,7 +112,7 @@
   padding: 20px;
   margin-bottom: 10px;
   font-size: 1rem;
-  resize: vertical; /* ✅ Allow resizing */
+  resize: vertical; /*  Allow resizing */
   outline: none;
 }
 
@@ -143,14 +176,14 @@
   font-weight: bold;
 }
 
-/* ✅ Left-aligned containers */
+/*  Left-aligned containers */
 .left {
   left: 0;
   text-align: right;
   padding-right: 5%;
 }
 
-/* ✅ Right-aligned containers */
+/*  Right-aligned containers */
 .right {
   left: 50%;
   text-align: left;

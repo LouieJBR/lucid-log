@@ -18,7 +18,7 @@ const authenticate = (req, res, next) => {
     }
 };
 
-// ✅ Save a Dream
+//  Save a Dream
 router.post('/save', authenticate, async (req, res) => {
     try {
         const { text } = req.body;
@@ -39,7 +39,7 @@ router.post('/save', authenticate, async (req, res) => {
     }
 });
 
-// ✅ Get Dreams for a User
+//  Get Dreams for a User
 router.get('/user-dreams', async (req, res) => {
     try {
         console.log("🔹 Incoming Request: ", req.headers.authorization);
@@ -50,10 +50,10 @@ router.get('/user-dreams', async (req, res) => {
             return res.status(401).json({ error: "Unauthorized" });
         }
 
-        // ✅ Decode token and find user
+        //  Decode token and find user
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const userId = decoded.id;
-        console.log("✅ User ID from Token:", userId);
+        console.log(" User ID from Token:", userId);
 
         // ❌ FIX: REMOVE ORDER-BY IF INDEX DOESN'T EXIST
         const dreams = await Dream.find({ userId }); // ❌ REMOVE `.sort({ date: -1 })` IF NOT INDEXED
