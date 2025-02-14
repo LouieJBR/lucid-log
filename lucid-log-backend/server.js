@@ -9,7 +9,13 @@ const Auth0Strategy = require('passport-auth0');
 const User = require('./models/User');
 
 const app = express();
-app.use(cors({ origin: 'https://black-mushroom-00d3c8703.4.azurestaticapps.net', credentials: true }));
+app.use(cors({
+    origin: [
+        'https://black-mushroom-00d3c8703.4.azurestaticapps.net',
+        'https://lucid-log-api-araahcdcfwcvc8cm.uksouth-01.azurewebsites.net'
+    ],
+    credentials: true
+}));
 app.use(express.json());
 
 // Session setup
@@ -54,7 +60,7 @@ const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log("MongoDB connected 🚀"))
+    .then(() => console.log("MongoDB connected"))
     .catch(err => console.error("MongoDB error:", err));
 
 const PORT = process.env.PORT || 5000;
