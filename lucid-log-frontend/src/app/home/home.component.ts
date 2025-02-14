@@ -133,4 +133,10 @@ export class HomeComponent implements OnInit {
     this.auth.logout(); // ✅ Calls Auth0 logout
     window.location.href = environment.apiUrl + '/auth/logout'; // ✅ Redirects correctly based on environment
   }  
+
+  toggleNav() {
+    const sidenav = document.querySelector('.sidenav');
+    sidenav?.classList.toggle('open'); // ✅ Toggles the `open` class
+  }
+  
 }
