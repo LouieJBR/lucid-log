@@ -105,10 +105,30 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // fetchDreams() {
+  //   this.dreamService.getDreams().subscribe({
+  //     next: (dreams) => {
+  //       this.dreams = dreams.reverse(); // ✅ Ensures newest dreams appear first
+  //     },
+  //     error: (err) => {
+  //       console.error('❌ Error Fetching Dreams:', err);
+  //     }
+  //   });
+  // }
+
   fetchDreams() {
     this.dreamService.getDreams().subscribe({
       next: (dreams) => {
-        this.dreams = dreams.reverse(); // ✅ Ensures newest dreams appear first
+        if (dreams.length === 0) {
+          this.dreams = [
+            { text: "Tip! \n Hover over an entry to delete it", date: new Date().toISOString() },
+            { text: "Enjoy your stay, your dreams are safe here", date: new Date().toISOString() },
+            { text: "Let your dreams reveal a journey...", date: new Date().toISOString() },
+            { text: "Welcome to Lucid Log!", date: new Date().toISOString() }
+          ];
+        } else {
+          this.dreams = dreams.reverse(); // ✅ Ensures newest dreams appear first
+        }
       },
       error: (err) => {
         console.error('❌ Error Fetching Dreams:', err);
