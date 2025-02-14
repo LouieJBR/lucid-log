@@ -25,22 +25,22 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd lucid-log-api  # ✅ Ensure we're inside the correct directory
+          cd lucid-log-backend  # ✅ Ensure we're inside the correct directory
           npm install
 
       - name: Build application
         run: |
-          cd lucid-log-api  # ✅ Ensure we're inside the correct directory
+          cd lucid-log-backend  # ✅ Ensure we're inside the correct directory
           npm run build --if-present
 
       - name: Run tests
         run: |
-          cd lucid-log-api  # ✅ Ensure we're inside the correct directory
+          cd lucid-log-backend  # ✅ Ensure we're inside the correct directory
           npm test --if-present
 
       - name: Zip artifact for deployment
         run: |
-          cd lucid-log-api  # ✅ Ensure we're inside the correct directory
+          cd lucid-log-backend  # ✅ Ensure we're inside the correct directory
           zip -r ../release.zip ./*
 
       - name: Upload artifact for deployment job
