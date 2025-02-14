@@ -131,8 +131,6 @@ export class HomeComponent implements OnInit {
   logout() {
     localStorage.removeItem('auth_token'); // ✅ Clear stored token
     this.auth.logout(); // ✅ Calls Auth0 logout
-    window.location.href = environment.production
-    ? 'https://black-mushroom-00d3c8703.4.azurestaticapps.net'
-    : 'http://localhost:4200';
+    window.location.href = environment.apiUrl + '/auth/logout'; // ✅ Redirects correctly based on environment
   }  
 }

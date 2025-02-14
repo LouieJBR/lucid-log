@@ -94,7 +94,7 @@ router.get('/profile', authenticate, async (req, res) => {
 // Logout Route
 router.get('/logout', (req, res) => {
     req.logout();
-    res.redirect('https://black-mushroom-00d3c8703.4.azurestaticapps.net');
+    res.redirect('https://black-mushroom-00d3c8703.4.azurestaticapps.net'); // ✅ Redirect to deployed frontend
 });
 
 module.exports = router;
