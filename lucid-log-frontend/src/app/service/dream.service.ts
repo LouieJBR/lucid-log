@@ -28,9 +28,7 @@ export class DreamService {
 
   getDreams(): Observable<Dream[]> {
     const token = this.getToken();
-    
-    console.log("Auth Token Being Sent:", token); // ✅ Log the token
-  
+      
     if (!token) {
       console.error("❌ No Auth Token Found! User may be logged out.");
       return new Observable<Dream[]>(); // Return empty observable if no token

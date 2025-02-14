@@ -62,14 +62,12 @@ export class HomeComponent implements OnInit {
 
     const storedToken = localStorage.getItem('auth_token');
     if (storedToken) {
-      console.log('Stored token:', storedToken);
       this.isLoggedIn = true;
       this.fetchDreams();
 
       // ✅ Fetch User Profile from MongoDB
       this.userService.getUserProfile().subscribe({
         next: (user) => {
-          console.log('✅ MongoDB User Data:', user);
           this.userName = user.name || 'Anonymous';
           this.userEmail = user.email || 'No Email';
         },
@@ -101,8 +99,6 @@ export class HomeComponent implements OnInit {
   submitDream() {
     if (this.dreamText.trim()) {
       this.dreamService.saveDream(this.dreamText).subscribe(response => {
-        console.log('✅ Saved Dream:', response.dream);
-        console.log('dream date:', response.dream.date);
         this.dreams.unshift(response.dream); // ✅ Ensure dream is of type Dream
         this.dreamText = '';
       });
@@ -112,7 +108,6 @@ export class HomeComponent implements OnInit {
   fetchDreams() {
     this.dreamService.getDreams().subscribe({
       next: (dreams) => {
-        console.log('✅ Fetched Dreams:', dreams);
         this.dreams = dreams.reverse(); // ✅ Ensures newest dreams appear first
       },
       error: (err) => {
@@ -123,7 +118,6 @@ export class HomeComponent implements OnInit {
 
   deleteDream(dreamId: string) {
       this.dreamService.deleteDream(dreamId).subscribe(response => {
-        console.log('✅ Deleted Dream:', response);
         this.dreams = this.dreams.filter(dream => dream._id !== dreamId);
       }, error => {
         console.error('❌ Error deleting dream:', error);
