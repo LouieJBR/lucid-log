@@ -119,15 +119,15 @@ export class HomeComponent implements OnInit {
   fetchDreams() {
     this.dreamService.getDreams().subscribe({
       next: (dreams) => {
-        if (dreams.length === 0) {
-          this.dreams = [
-            { text: "Tip! \n Hover over an entry to delete it", date: new Date().toISOString() },
-            { text: "Enjoy your stay, your dreams are safe here", date: new Date().toISOString() },
-            { text: "Let your dreams reveal a journey...", date: new Date().toISOString() },
-            { text: "Welcome to Lucid Log!", date: new Date().toISOString() }
-          ];
-        } else {
-          this.dreams = dreams.reverse(); //  Ensures newest dreams appear first
+        this.dreams = dreams.length > 0 ? dreams.reverse() : [];
+  
+        if (this.dreams.length === 0) {
+          this.dreams.push(
+            { _id: '3', text: "Tip! \n Hover over an entry to delete it.", date: new Date().toISOString() },
+            { _id: '2', text: "Enjoy your stay, your dreams are safe here.", date: new Date().toISOString() },
+            { _id: '1', text: "Let your dreams reveal a journey...", date: new Date().toISOString() },
+            { _id: '0', text: "Welcome to Lucid Log!", date: new Date().toISOString() },
+          );
         }
       },
       error: (err) => {
@@ -135,6 +135,7 @@ export class HomeComponent implements OnInit {
       }
     });
   }
+  
 
   deleteDream(dreamId: string) {
       this.dreamService.deleteDream(dreamId).subscribe(response => {
